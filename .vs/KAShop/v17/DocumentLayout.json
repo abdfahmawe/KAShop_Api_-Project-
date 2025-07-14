@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|c:\\users\\hp\\documents\\asp11\\api\\kashop\\kashop\\resources\\sharedresource.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|solutionrelative:kashop\\resources\\sharedresource.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|c:\\users\\hp\\documents\\asp11\\api\\kashop\\kashop\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|solutionrelative:kashop\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|c:\\users\\hp\\documents\\asp11\\api\\kashop\\kashop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9D56FEE-B31C-4914-91EC-198D1A4BA993}|KAShop\\KAShop.csproj|solutionrelative:kashop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SharedResource.resx",
+              "DocumentMoniker": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Resources\\SharedResource.resx",
+              "RelativeDocumentMoniker": "KAShop\\Resources\\SharedResource.resx",
+              "ToolTip": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Resources\\SharedResource.resx",
+              "RelativeToolTip": "KAShop\\Resources\\SharedResource.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-07-14T16:03:47.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Controllers\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "KAShop\\Controllers\\CategoriesController.cs",
+              "ToolTip": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Controllers\\CategoriesController.cs",
+              "RelativeToolTip": "KAShop\\Controllers\\CategoriesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-12T15:41:31.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Program.cs",
+              "RelativeDocumentMoniker": "KAShop\\Program.cs",
+              "ToolTip": "C:\\Users\\hp\\Documents\\asp11\\API\\KAShop\\KAShop\\Program.cs",
+              "RelativeToolTip": "KAShop\\Program.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwCAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-12T15:40:13.926Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
