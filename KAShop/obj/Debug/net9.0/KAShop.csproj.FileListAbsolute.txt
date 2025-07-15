@@ -169,3 +169,11 @@ C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Swashbuckle.AspNe
 C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Mapster.dll
 C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Mapster.Core.dll
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\ar\KAShop.resources.dll
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Microsoft.Extensions.Localization.dll
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\bin\Debug\net9.0\Microsoft.Extensions.Localization.Abstractions.dll
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\obj\Debug\net9.0\KAShop.Resources.SharedResource.resources
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\obj\Debug\net9.0\KAShop.Resources.SharedResource.ar.resources
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\obj\Debug\net9.0\KAShop.csproj.GenerateResource.cache
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\obj\Debug\net9.0\KAShop.sourcelink.json
+C:\Users\hp\Documents\asp11\API\KAShop\KAShop\obj\Debug\net9.0\ar\KAShop.resources.dll

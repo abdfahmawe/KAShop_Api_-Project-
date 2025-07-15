@@ -15,31 +15,35 @@ namespace KAShop.Controllers
     public class CategoriesController : ControllerBase
     {
         ApplicationDbContext context = new ApplicationDbContext();
+
         private readonly IStringLocalizer<SharedResource> _localizer;
         public CategoriesController(IStringLocalizer<SharedResource> localizer)
         {
             _localizer = localizer;
         }
+
+
+
         [HttpPost("")]
         public IActionResult Create(CategoryRequistDTO requist)
         {
             context.categories.Add(requist.Adapt<Category>());
             context.SaveChanges();
-            return Ok(new {message = "the add done " , data = requist.Adapt<CategoryResponseDTO>() });
+            return Ok(new {message = _localizer["added-success"], data = requist.Adapt<CategoryResponseDTO>() });
         }
         [HttpGet("")]
         public IActionResult GetAll()
         {
             var categories = context.categories.OrderByDescending(c => c.CreatedAt).ToList().Adapt<List<CategoryResponseDTO>>();
 
-            return Ok(new {message ="here is the categories ", data = categories });
+            return Ok(new {message = _localizer["succsess"], data = categories });
         }
         [HttpGet("forUser")]
         public IActionResult Index()
         {
             var categories = context.categories.Where(c => c.status==Status.Active).ToList().Adapt<List<CategoryResponseDTO>>();
 
-            return Ok(new { message = "here is the categories ", data = categories });
+            return Ok(new { message = _localizer["succsess"].Value, data = categories });
         }
 
         [HttpGet("{id}")]
@@ -48,7 +52,7 @@ namespace KAShop.Controllers
             var category = context.categories.Find(id);
             if(category is not null)
             {
-                return Ok(new { message = "succsses", data = category.Adapt<CategoryResponseDTO>() });
+                return Ok(new { message = _localizer["succsess"], data = category.Adapt<CategoryResponseDTO>() });
             }
             else
             {
@@ -64,11 +68,11 @@ namespace KAShop.Controllers
                 requist.Adapt(category);
                 context.categories.Update(category);
                 context.SaveChanges();
-                return Ok(new { message = "succsses", data = category.Adapt<CategoryResponseDTO>() });
+                return Ok(new { message = _localizer["succsess"], data = category.Adapt<CategoryResponseDTO>() });
             }
             else
             {
-                return NotFound(new { message = "there is no category with this id" });
+                return NotFound(new { message = _localizer["not-found"] });
             }
         }
         [HttpPatch("{id}/Status")]
@@ -79,11 +83,11 @@ namespace KAShop.Controllers
             {
                 category.status = category.status == Status.Active ? Status.InActive : Status.Active;
                 context.SaveChanges();
-                return Ok(new { message = "status changed succssusfle"});
+                return Ok(new { message = _localizer["succsess"] });
             }
             else
             {
-                return NotFound(new { message = "there is no category with this id" });
+                return NotFound(new { message = _localizer["not-found"] });
             }
         }
 
@@ -93,11 +97,11 @@ namespace KAShop.Controllers
             var category = context.categories.Find(id);
             if(category is null)
             {
-                return NotFound(new { message = "there is no category with this id" });
+                return NotFound(new { message = _localizer["not-found"] });
             }
             context.categories.Remove(category);
             context.SaveChanges();
-            return Ok(new {message= "remove done succssefuly"});
+            return Ok(new {message= _localizer["succsess"]  });
         }
 
         [HttpDelete("")]
@@ -106,11 +110,11 @@ namespace KAShop.Controllers
             var categories = context.categories.ToList();
             if (!categories.Any())
             {
-                return NotFound(new { message = "there is no categories at all" });
+                return NotFound(new { message = _localizer["not-found"] });
             }
             context.RemoveRange(categories);
             context.SaveChanges();
-            return Ok(new { message = "remove all categories done succssefuly" });
+            return Ok(new { message = _localizer["succsess"] });
         }
     }
 }
