@@ -3,9 +3,11 @@ using KAShop.Data;
 using KAShop.DTO.Requist;
 using KAShop.DTO.Response;
 using KAShop.Models;
+using KAShop.Models.Category;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace KAShop.Controllers
@@ -25,7 +27,7 @@ namespace KAShop.Controllers
 
 
         [HttpPost("")]
-        public IActionResult Create(CategoryRequistDTO requist)
+        public IActionResult Create([FromBody] CategoryRequistDTO requist)
         {
             context.categories.Add(requist.Adapt<Category>());
             context.SaveChanges();
@@ -41,13 +43,19 @@ namespace KAShop.Controllers
         [HttpGet("forUser")]
         public IActionResult Index()
         {
-            var categories = context.categories.Where(c => c.status==Status.Active).ToList().Adapt<List<CategoryResponseDTO>>();
+         
+
+           var categories = context.categories.Include(c=> c.categoryTranslations).Where(c => c.status==Status.Active).ToList().Adapt<List<CategoryResponseDTO>>();
+
+
+
+
 
             return Ok(new { message = _localizer["succsess"].Value, data = categories });
         }
 
         [HttpGet("{id}")]
-        public IActionResult Details(int id)
+        public IActionResult Details([FromRoute]int id)
         {
             var category = context.categories.Find(id);
             if(category is not null)
@@ -60,7 +68,7 @@ namespace KAShop.Controllers
             }
         }
         [HttpPatch("{id}")]
-        public IActionResult Update(int id , CategoryRequistDTO requist)
+        public IActionResult Update([FromRoute]int id ,[FromBody ] CategoryRequistDTO requist)
         {
             var category = context.categories.Find(id);
             if (category is not null)
@@ -76,7 +84,7 @@ namespace KAShop.Controllers
             }
         }
         [HttpPatch("{id}/Status")]
-        public IActionResult UpdateStatus(int id)
+        public IActionResult UpdateStatus([FromRoute] int id)
         {
             var category = context.categories.Find(id);
             if (category is not null)
@@ -92,7 +100,7 @@ namespace KAShop.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult delete(int id)
+        public IActionResult delete([FromRoute] int id)
         {
             var category = context.categories.Find(id);
             if(category is null)

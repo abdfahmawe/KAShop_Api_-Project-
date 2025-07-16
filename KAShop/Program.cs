@@ -26,7 +26,17 @@ namespace KAShop
                 options.DefaultRequestCulture = new RequestCulture(defaultCulture);
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+            new QueryStringRequestCultureProvider()
+                {
+                     QueryStringKey = "lang"
+                    },
+             };
+
             });
+           
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();

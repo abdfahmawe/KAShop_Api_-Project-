@@ -2,8 +2,8 @@
 {
     public class CategoryResponseDTO
     {
-        public string Name { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public int Id { get; set; }
+        public List<CategoryTranslationResponse> categoryTranslations { get; set; }
 
     }
 }
