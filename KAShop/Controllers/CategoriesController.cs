@@ -41,17 +41,16 @@ namespace KAShop.Controllers
             return Ok(new {message = _localizer["succsess"], data = categories });
         }
         [HttpGet("forUser")]
-        public IActionResult Index()
+        public IActionResult Index([FromQuery]string lang = "ar")
         {
-         
+           var categories = context.categories.Include(c=> c.categoryTranslations).ToList().Adapt<List<CategoryResponseDTO>>();
 
-           var categories = context.categories.Include(c=> c.categoryTranslations).Where(c => c.status==Status.Active).ToList().Adapt<List<CategoryResponseDTO>>();
-
-
-
-
-
-            return Ok(new { message = _localizer["succsess"].Value, data = categories });
+            var result = categories.Select(cat => new
+            {
+                Id = cat.Id,
+                Name = cat.categoryTranslations.FirstOrDefault(c => c.Language == lang).Name,
+            });
+            return Ok(new { message = _localizer["succsess"].Value, data = result });
         }
 
         [HttpGet("{id}")]
