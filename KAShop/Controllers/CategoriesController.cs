@@ -16,12 +16,13 @@ namespace KAShop.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        ApplicationDbContext context = new ApplicationDbContext();
 
         private readonly IStringLocalizer<SharedResource> _localizer;
-        public CategoriesController(IStringLocalizer<SharedResource> localizer)
+        private readonly ApplicationDbContext _context;
+        public CategoriesController(IStringLocalizer<SharedResource> localizer  , ApplicationDbContext context)
         {
             _localizer = localizer;
+            _context = context; 
         }
 
 
@@ -29,21 +30,21 @@ namespace KAShop.Controllers
         [HttpPost("")]
         public IActionResult Create([FromBody] CategoryRequistDTO requist)
         {
-            context.categories.Add(requist.Adapt<Category>());
-            context.SaveChanges();
+            _context.categories.Add(requist.Adapt<Category>());
+            _context.SaveChanges();
             return Ok(new {message = _localizer["added-success"], data = requist.Adapt<CategoryResponseDTO>() });
         }
         [HttpGet("")]
         public IActionResult GetAll()
         {
-            var categories = context.categories.OrderByDescending(c => c.CreatedAt).ToList().Adapt<List<CategoryResponseDTO>>();
+            var categories = _context.categories.OrderByDescending(c => c.CreatedAt).ToList().Adapt<List<CategoryResponseDTO>>();
 
             return Ok(new {message = _localizer["succsess"], data = categories });
         }
         [HttpGet("forUser")]
         public IActionResult Index([FromQuery]string lang = "ar")
         {
-           var categories = context.categories.Include(c=> c.categoryTranslations).ToList().Adapt<List<CategoryResponseDTO>>();
+           var categories = _context.categories.Include(c=> c.categoryTranslations).ToList().Adapt<List<CategoryResponseDTO>>();
 
             var result = categories.Select(cat => new
             {
@@ -56,7 +57,7 @@ namespace KAShop.Controllers
         [HttpGet("{id}")]
         public IActionResult Details([FromRoute]int id)
         {
-            var category = context.categories.Find(id);
+            var category = _context.categories.Find(id);
             if(category is not null)
             {
                 return Ok(new { message = _localizer["succsess"], data = category.Adapt<CategoryResponseDTO>() });
@@ -69,12 +70,12 @@ namespace KAShop.Controllers
         [HttpPatch("{id}")]
         public IActionResult Update([FromRoute]int id ,[FromBody ] CategoryRequistDTO requist)
         {
-            var category = context.categories.Find(id);
+            var category = _context.categories.Find(id);
             if (category is not null)
             {
                 requist.Adapt(category);
-                context.categories.Update(category);
-                context.SaveChanges();
+                _context.categories.Update(category);
+                _context.SaveChanges();
                 return Ok(new { message = _localizer["succsess"], data = category.Adapt<CategoryResponseDTO>() });
             }
             else
@@ -85,11 +86,11 @@ namespace KAShop.Controllers
         [HttpPatch("{id}/Status")]
         public IActionResult UpdateStatus([FromRoute] int id)
         {
-            var category = context.categories.Find(id);
+            var category = _context.categories.Find(id);
             if (category is not null)
             {
                 category.status = category.status == Status.Active ? Status.InActive : Status.Active;
-                context.SaveChanges();
+                _context.SaveChanges();
                 return Ok(new { message = _localizer["succsess"] });
             }
             else
@@ -101,26 +102,26 @@ namespace KAShop.Controllers
         [HttpDelete("{id}")]
         public IActionResult delete([FromRoute] int id)
         {
-            var category = context.categories.Find(id);
+            var category = _context.categories.Find(id);
             if(category is null)
             {
                 return NotFound(new { message = _localizer["not-found"] });
             }
-            context.categories.Remove(category);
-            context.SaveChanges();
+            _context.categories.Remove(category);
+            _context.SaveChanges();
             return Ok(new {message= _localizer["succsess"]  });
         }
 
         [HttpDelete("")]
         public IActionResult deleteAll()
         {
-            var categories = context.categories.ToList();
+            var categories = _context.categories.ToList();
             if (!categories.Any())
             {
                 return NotFound(new { message = _localizer["not-found"] });
             }
-            context.RemoveRange(categories);
-            context.SaveChanges();
+            _context.RemoveRange(categories);
+            _context.SaveChanges();
             return Ok(new { message = _localizer["succsess"] });
         }
     }

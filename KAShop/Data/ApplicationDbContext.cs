@@ -7,10 +7,9 @@ namespace KAShop.Data
     {
         public DbSet<Category> categories { get; set; }
         public DbSet<CategoryTranslation> categoryTranslations { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=.;Database=KAShop_api;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
 }
