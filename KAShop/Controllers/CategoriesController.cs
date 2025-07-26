@@ -70,18 +70,26 @@ namespace KAShop.Controllers
         [HttpPatch("{id}")]
         public IActionResult Update([FromRoute]int id ,[FromBody ] CategoryRequistDTO requist)
         {
-            var category = _context.categories.Find(id);
-            if (category is not null)
+            var category = _context.categories.Include(c => c.categoryTranslations).FirstOrDefault(c => c.Id == id);
+            if(category is null)
             {
-                requist.Adapt(category);
-                _context.categories.Update(category);
-                _context.SaveChanges();
-                return Ok(new { message = _localizer["succsess"], data = category.Adapt<CategoryResponseDTO>() });
+                return BadRequest(new { message = _localizer["not-found"] });
             }
-            else
+            category.status = requist.status;
+            foreach(var RequistTranslation in requist.categoryTranslations)
             {
-                return NotFound(new { message = _localizer["not-found"] });
+                var existingTranslation = category.categoryTranslations.FirstOrDefault(c => c.Language == RequistTranslation.Language);
+                if (existingTranslation is not null)
+                {
+                    existingTranslation.Name = RequistTranslation.Name;
+                }
+                else
+                {
+                    return BadRequest(new { message = _localizer["not-found"] });
+                }
             }
+            _context.SaveChanges();
+            return Ok(new { message = _localizer["succsess"] });
         }
         [HttpPatch("{id}/Status")]
         public IActionResult UpdateStatus([FromRoute] int id)
